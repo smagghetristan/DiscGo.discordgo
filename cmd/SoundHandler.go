@@ -292,6 +292,7 @@ func PlayYoutubeLink(Session *discordgo.Session, GuildID string, MessageChannelI
 }
 
 func StopPlaying(GuildID string, ChannelID string, Session *discordgo.Session) {
+	AllQueues = RemoveQueue(AllQueues, GuildID)
 	i := 0
 	exist := false
 	for i = 0; i < len(players); i++ {
@@ -301,7 +302,22 @@ func StopPlaying(GuildID string, ChannelID string, Session *discordgo.Session) {
 		}
 	}
 	if exist {
-		Session.ChannelMessageSend(ChannelID, ":no_entry: Stopped the current song.")
+		Session.ChannelMessageSend(ChannelID, ":no_entry: Removed all songs from the queue and stopped playing.")
+		players[i].stream.Stop()
+	}
+}
+
+func SkipPlaying(GuildID string, ChannelID string, Session *discordgo.Session) {
+	i := 0
+	exist := false
+	for i = 0; i < len(players); i++ {
+		if players[i].id == GuildID {
+			exist = true
+			break
+		}
+	}
+	if exist {
+		Session.ChannelMessageSend(ChannelID, ":arrow_forward: Skipped to the next song.")
 		players[i].stream.Stop()
 	}
 }

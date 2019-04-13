@@ -21,7 +21,7 @@ func main() {
 	// Register the messageCreate func as a callback for MessageCreate events.
 	dg.AddHandler(messageCreate)
 	dg.AddHandler(botReady)
-
+	AllCommands()
 	err = dg.Open()
 	if err != nil {
 		fmt.Println("error opening connection,", err)

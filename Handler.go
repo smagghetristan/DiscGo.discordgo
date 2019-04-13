@@ -4,7 +4,6 @@ import (
 	"os"
 	"strings"
 
-	"DiscGo.discordgo/cmd"
 	"DiscGo.discordgo/config"
 	"github.com/bwmarrin/discordgo"
 )
@@ -22,12 +21,15 @@ func CommandHandle(session *discordgo.Session, m *discordgo.MessageCreate) {
 			os.Exit(0)
 		}
 	}
-	commands.Help(session, m)
-	commands.Sound(session, m)
-	commands.Administration(session, m)
-	commands.Miscellaneous(session, m)
-	commands.TicTacToe(session, m)
-	commands.HangMan(session, m)
+
+	for i := 0; i < len(config.Commands); i++ {
+		if config.Commands[i].Command != "" {
+			if strings.HasPrefix(m.Content, config.Commands[i].Command) {
+				config.Commands[i].Function(session, m)
+				break
+			}
+		}
+	}
 }
 func messageCreate(session *discordgo.Session, m *discordgo.MessageCreate) {
 	go CommandHandle(session, m)
