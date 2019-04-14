@@ -24,7 +24,7 @@
 
 - And it has a Hang Man.
 
-![an image is here :c](https://raw.githubusercontent.com/smagghetristan/Yebot-DiscordGo/master/Screenshots/HangMan.png)
+![an image is here :c](https://raw.githubusercontent.com/smagghetristan/Yebot-DiscordGo/master/Screenshots/Hang%20Man.png)
 
 # Contact
 
