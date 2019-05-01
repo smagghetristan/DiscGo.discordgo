@@ -79,8 +79,7 @@ func CreateEmbeds() {
 			})
 			AllEmbeds[Commands[i].Category.Menu.Name].Fields = Fields[Commands[i].Category.Menu.Name]
 		} else {
-			Fields[Commands[i].Category.Menu.Name][k].Value += `
-			` + Commands[i].ShortDescription
+			Fields[Commands[i].Category.Menu.Name][k].Value += "\n" + Commands[i].ShortDescription
 			AllEmbeds[Commands[i].Category.Menu.Name].Fields = Fields[Commands[i].Category.Menu.Name]
 		}
 	}
