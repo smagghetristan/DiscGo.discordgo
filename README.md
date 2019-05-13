@@ -1,5 +1,6 @@
 # Yebot but in go
 
+- It's website is : https://bots.yewolf.ovh/yebot/
 - Yebot, in Node.JS, was a fun, utility and random bot that could do cards and things like that.
 - It had a music functionnality and it was pretty laggy.
 
