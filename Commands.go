@@ -1,7 +1,7 @@
 package main
 
 import "DiscGo.discordgo/config"
-import "DiscGo.discordgo/cmd"
+import commands "DiscGo.discordgo/cmd"
 
 func AllCommands() {
 	mainMenu := config.Menu{
@@ -48,6 +48,11 @@ func AllCommands() {
 
 	hCategory := config.Category{
 		Name: "Hang Man :",
+		Menu: gameMenu,
+	}
+
+	mCategory := config.Category{
+		Name: "Mine Sweeper :",
 		Menu: gameMenu,
 	}
 
@@ -224,6 +229,14 @@ func AllCommands() {
 		Function:         commands.HM,
 	}
 
+	ms := config.Command{
+		Category:         mCategory,
+		Command:          config.Prefix + "m",
+		ShortDescription: "**m** : Creates a 10x10 Minesweeper grid",
+		LongDescription:  "Try it, it will.",
+		Function:         commands.MineSweeperCreate,
+	}
+
 	config.AddCommand(kick)
 	config.AddCommand(ban)
 	config.AddCommand(ping)
@@ -252,6 +265,8 @@ func AllCommands() {
 
 	config.AddCommand(hplay)
 	config.AddCommand(h)
+
+	config.AddCommand(ms)
 
 	config.CreateEmbeds()
 }
