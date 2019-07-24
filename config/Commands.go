@@ -4,10 +4,6 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
-func CreateCommand(ShortDesc string, LongDesc string, Function func(), CategoryName string, CategoryPlace int, MenuName string, MenuDesc string, MenuMain bool) {
-
-}
-
 func addMenu(Menu Menu) {
 	Menus = append(Menus, Menu)
 }
