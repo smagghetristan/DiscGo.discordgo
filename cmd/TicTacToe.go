@@ -253,7 +253,7 @@ func TCommandGame(s *discordgo.Session, m *discordgo.MessageCreate) {
 						ID:      AllTTTGames[i].GridMessage.ID,
 						Channel: AllTTTGames[i].GridMessage.ChannelID,
 					}
-					s.ChannelMessageEditComplex(Edit)
+					AllTTTGames[i].GridMessage, _  = s.ChannelMessageEditComplex(Edit)
 					if Win {
 						RemoveTTTGame(AllTTTGames, AllTTTGames[i].Player1, AllTTTGames[i].Player2)
 						s.ChannelMessageSend(AllTTTGames[i].GridMessage.ChannelID, "**Player 1** won the game !")
@@ -306,7 +306,7 @@ func TCommandGame(s *discordgo.Session, m *discordgo.MessageCreate) {
 						ID:      AllTTTGames[i].GridMessage.ID,
 						Channel: AllTTTGames[i].GridMessage.ChannelID,
 					}
-					s.ChannelMessageEditComplex(Edit)
+					AllTTTGames[i].GridMessage, _ = s.ChannelMessageEditComplex(Edit)
 					if Win {
 						RemoveTTTGame(AllTTTGames, AllTTTGames[i].Player1, AllTTTGames[i].Player2)
 						s.ChannelMessageSend(AllTTTGames[i].GridMessage.ChannelID, "**Player 2** won the game !")
