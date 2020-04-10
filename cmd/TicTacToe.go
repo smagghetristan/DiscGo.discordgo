@@ -32,20 +32,20 @@ type tttGame struct {
 
 var AllTTTGames []tttGame
 
-func RemoveTTTGame(s []tttGame, Player1 string, Player2 string) []tttGame {
+func RemoveTTTGame(s tttGame) []tttGame {
 	i := 0
 	exist := false
-	for i = 0; i < len(s); i++ {
-		if s[i].Player1 == Player1 && s[i].Player2 == Player2 {
+	for i = 0; i < len(AllTTTGames); i++ {
+		if AllTTTGames[i] == s {
 			exist = true
 			break
 		}
 	}
 	if exist {
-		s[i] = s[len(s)-1]
-		return s[:len(s)-1]
+		AllTTTGames[i] = AllTTTGames[len(AllTTTGames)-1]
+		return AllTTTGames[:len(AllTTTGames)-1]
 	} else {
-		return s
+		return AllTTTGames
 	}
 }
 
@@ -255,11 +255,11 @@ func TCommandGame(s *discordgo.Session, m *discordgo.MessageCreate) {
 					}
 					AllTTTGames[i].GridMessage, _  = s.ChannelMessageEditComplex(Edit)
 					if Win {
-						RemoveTTTGame(AllTTTGames, AllTTTGames[i].Player1, AllTTTGames[i].Player2)
+						RemoveTTTGame(AllTTTGames[i])
 						s.ChannelMessageSend(AllTTTGames[i].GridMessage.ChannelID, "**Player 1** won the game !")
 					}
 					if Tie {
-						RemoveTTTGame(AllTTTGames, AllTTTGames[i].Player1, AllTTTGames[i].Player2)
+						RemoveTTTGame(AllTTTGames[i])
 						s.ChannelMessageSend(AllTTTGames[i].GridMessage.ChannelID, "No one won the game !")
 					}
 					err := s.ChannelMessageDelete(m.ChannelID, m.ID)
@@ -308,11 +308,11 @@ func TCommandGame(s *discordgo.Session, m *discordgo.MessageCreate) {
 					}
 					AllTTTGames[i].GridMessage, _ = s.ChannelMessageEditComplex(Edit)
 					if Win {
-						RemoveTTTGame(AllTTTGames, AllTTTGames[i].Player1, AllTTTGames[i].Player2)
+						RemoveTTTGame(AllTTTGames[i])
 						s.ChannelMessageSend(AllTTTGames[i].GridMessage.ChannelID, "**Player 2** won the game !")
 					}
 					if Tie {
-						RemoveTTTGame(AllTTTGames, AllTTTGames[i].Player1, AllTTTGames[i].Player2)
+						RemoveTTTGame(AllTTTGames[i])
 						s.ChannelMessageSend(AllTTTGames[i].GridMessage.ChannelID, "No one won the game !")
 					}
 					err := s.ChannelMessageDelete(m.ChannelID, m.ID)
