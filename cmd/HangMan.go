@@ -92,7 +92,7 @@ func Try() (string, string, error) {
 func isWin(s HMGame) bool {
 	win := true
 	t := HMFields(s)
-	if strings.Contains(t[2].Value, ":large_blue_circle:") {
+	if strings.Contains(t[2].Value, ":large_blue_diamond:") {
 		win = false
 	}
 	return win
@@ -114,7 +114,7 @@ func HMFields(s HMGame) []*discordgo.MessageEmbedField {
 			}
 		}
 		if !letter && string([]byte(s.Word)[i]) != " " && string([]byte(s.Word)[i]) != "-" {
-			value += ":large_blue_circle: "
+			value += ":large_blue_diamond: "
 		} else if !letter && string([]byte(s.Word)[i]) == " " {
 			value += ":white_circle: "
 		} else if !letter && string([]byte(s.Word)[i]) == "-" {

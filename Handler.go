@@ -13,7 +13,7 @@ import (
 
 func CommandHandle(session *discordgo.Session, m *discordgo.MessageCreate) {
 	user := m.Author
-	if BotUsr, err := session.User("@me"); user.ID == BotUsr.ID || user.Bot || err != nil {
+	if user.Bot {
 		return
 	}
 	if strings.HasPrefix(m.Content, config.Prefix+"restart") {

@@ -36,7 +36,7 @@ func RemoveTTTGame(s tttGame) []tttGame {
 	i := 0
 	exist := false
 	for i = 0; i < len(AllTTTGames); i++ {
-		if AllTTTGames[i] == s {
+		if AllTTTGames[i].ChannelID == s.ChannelID && AllTTTGames[i].Player1 == s.Player1 && AllTTTGames[i].Player2 == s.Player2 {
 			exist = true
 			break
 		}
@@ -253,7 +253,7 @@ func TCommandGame(s *discordgo.Session, m *discordgo.MessageCreate) {
 						ID:      AllTTTGames[i].GridMessage.ID,
 						Channel: AllTTTGames[i].GridMessage.ChannelID,
 					}
-					AllTTTGames[i].GridMessage, _  = s.ChannelMessageEditComplex(Edit)
+					AllTTTGames[i].GridMessage, _ = s.ChannelMessageEditComplex(Edit)
 					if Win {
 						RemoveTTTGame(AllTTTGames[i])
 						s.ChannelMessageSend(AllTTTGames[i].GridMessage.ChannelID, "**Player 1** won the game !")
